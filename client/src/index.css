@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Source Serif 4", ui-serif, Georgia, serif;
+
+  --color-ink: #12141a;
+  --color-ink-muted: #5c6478;
+  --color-paper: #e8ecf3;
+  --color-paper-elevated: #f4f6fa;
+  --color-signal: #e50914;
+  --color-signal-deep: #b20710;
+  --color-line: color-mix(in oklab, var(--color-ink) 12%, transparent);
+
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.5s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    background-image:
+      radial-gradient(ellipse 90% 55% at 12% -10%, #ffd6d8 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 100% 0%, #c9d6f0 0%, transparent 50%),
+      linear-gradient(180deg, #f7f8fc 0%, var(--color-paper) 40%, #dde3ee 100%);
+    background-attachment: fixed;
+  }
+
+  #app {
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-signal) 28%, white);
+  }
+}
